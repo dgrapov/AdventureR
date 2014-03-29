@@ -15,4 +15,4 @@ See some story examples below:
 * [Travel the World](https://github.com/dgrapov/AdventureR/blob/master/interactive%20story/story%20travel%20the%20world.md)
 * [Start a Business](https://github.com/dgrapov/AdventureR/blob/master/interactive%20story/story%20stay%20home%202.md)
 
-There are more posssibilites for stories, but the examples above show all of the different endings.
+There are more posssibilites for stories, but the examples above show all of the different endings (for now).
