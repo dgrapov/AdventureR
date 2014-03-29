@@ -2,7 +2,7 @@
 # based on http://boomeria.org/chemlectures/qual/macdonalds.jpg
 
 # make story based on question and interactive choices, images (TODO)
-make.story<-function(question,options,image=NULL,image.filepath=TRUE){
+make.story<-function(question,options,image=NULL,image.filepath=FALSE){
 	HS<-list()
 	HS$question<-question
 	HS$options<-options
@@ -12,7 +12,30 @@ make.story<-function(question,options,image=NULL,image.filepath=TRUE){
 	return(HS)
 }
 
-# write story to html(TODO: typesetting and images)
+#choose image
+image.story<-function(input){
+	switch(input,
+			"travel" 									= "travel.png",
+			"go to college" 							= "college.png",
+			"stay at home and sponge off your parents" 	= "stayhome.png",
+			"join the army" 							= "army.png",
+			"become an entrepreneur" 					= "entrepreneur.png",
+			"rock band" 								= "rockband.png",
+			"burglary ring" 							= "burglary.png",
+			"lawn care business" 						= "lawncare.png",
+			"they croak" 								= "croak.png",
+			"you get kicked out" 						= "kickedout.png",
+			"they start to cramp your style" 			= "crampstyle.png",
+			"Mexico" 									= "mexico.png",
+			"Japan" 									= "japan.png",
+			"Germany" 									= "germany.png",
+			"business"									= "buisness.png",	
+			"liberal arts" 								= "liberalarts.png",
+			"get hired" 								= "rejected.png",
+			"get rejected" 								= "rejected.png")			
+}
+
+# write story 
 end.story<-function(story,end="The end.",image=NULL){
 	
 	if(is.null(image)){
@@ -40,7 +63,7 @@ end.story<-function(story,end="The end.",image=NULL){
 		browseURL(paste('file://', file.path(getwd(),'story.html'), sep=''))
 	}
 	
-# choose your own adventure story making function
+#interactively make story
 interactive.story<-function(){
 	story<-list()
 	HS<-make.story("You go to high school, and",c("graduate", "drop out"),image="")
@@ -50,20 +73,14 @@ if(HS$message=="graduate"){
 		HS1<-make.story("After graduating you decide to",c("travel","go to college","stay at home and sponge off your parents"))
 		HS2<-NULL
 	
-		HS1$image<-switch(HS1$message,
-			"travel" 									= paste('file://', file.path(getwd(),"travel.png"), sep=''),
-			"go to college" 							= paste('file://', file.path(getwd(),"college.png"), sep=''),
-			"stay at home and sponge off your parents" 	= paste('file://', file.path(getwd(),"stayhome.png"), sep=''))
+		HS1$image<-image.story(HS1$message)
 		
 			
 		story<-c(story,list(HS1))
 	} else {
 		HS1<-NULL
 		HS2<-make.story("You",c("join the army","become an entrepreneur","stay at home and sponge off your parents"))
-		HS2$image<-switch(HS2$message,
-			"stay at home and sponge off your parents" 	= paste('file://', file.path(getwd(),"stayhome.png"), sep=''),
-			"join the army" 							= paste('file://', file.path(getwd(),"army.png"), sep=''),
-			"become an entrepreneur" 					= paste('file://', file.path(getwd(),"entrepreneur.png"), sep=''))
+		HS2$image<-image.story(HS2$message)
 		story<-c(story,list(HS2))
 	} 
 	
@@ -75,13 +92,7 @@ if(is.null(HS1)){
 		"stay at home and sponge off your parents" 	= make.story("You stay at your parents until", c("they croak", "you get kicked out", "they start to cramp your style")))
 	HS4<-NULL
 	
-	HS3$image<-switch(HS3$message,
-			"rock band" 						= paste('file://', file.path(getwd(),"rockband.png"), sep=''),
-			"burglary ring" 					= paste('file://', file.path(getwd(),"burglary.png"), sep=''),
-			"lawn care business" 				= paste('file://', file.path(getwd(),"lawncare.png"), sep=''),
-			"they croak" 						= paste('file://', file.path(getwd(),"croak.png"), sep=''),
-			"you get kicked out" 				= paste('file://', file.path(getwd(),"kickedout.png"), sep=''),
-			"they start to cramp your style" 	= paste('file://', file.path(getwd(),"crampstyle.png"), sep=''))
+	HS3$image<-image.story(HS3$message)
 					
 	story<-c(story,list(HS3))
 } else {
@@ -94,16 +105,7 @@ if(is.null(HS1)){
 	
 	if(HS4$message == "'science'"){HS4<-make.story("In college you major in 'science', but after meeting too many minimum wage paid PhDs, you quickly decide to switch to a more lucrative major. You switch majors to", c("business", "liberal arts"))}	
 	
-	HS4$image<-switch(HS4$message,
-		"Mexico" 							= paste('file://', file.path(getwd(),"mexico.png"), sep=''),
-		"Japan" 							= paste('file://', file.path(getwd(),"japan.png"), sep=''),
-		"Germany" 							= paste('file://', file.path(getwd(),"germany.png"), sep=''),
-		"they croak" 						= paste('file://', file.path(getwd(),"croak.png"), sep=''),
-		"you get kicked out" 				= paste('file://', file.path(getwd(),"kickedout.png"), sep=''),
-		"they start to cramp your style" 	= paste('file://', file.path(getwd(),"crampstyle.png"), sep=''),
-		"business"							= paste('file://', file.path(getwd(),"buisness.png"), sep=''),	
-		"liberal arts" 						= paste('file://', file.path(getwd(),"liberalarts.png"), sep=''))
-	
+	HS4$image<-image.story(HS4$message)
 	
 	story<-c(story,list(HS4))
 }	
@@ -121,14 +123,7 @@ if(is.null(HS3)){
 		HS6<-NULL
 		
 
-		HS5$image<-switch(HS5$message,
-			"become broke" 						= paste('file://', file.path(getwd(),"broke.png"), sep=''),
-			"get lonely" 						= paste('file://', file.path(getwd(),"lonely.png"), sep=''),
-			"rock band" 						= paste('file://', file.path(getwd(),"rockband.png"), sep=''),
-			"burglary ring" 					= paste('file://', file.path(getwd(),"burglary.png"), sep=''),
-			"lawn care business"			 	= paste('file://', file.path(getwd(),"lawncare.png"), sep=''),
-			"get hired" 						= paste('file://', file.path(getwd(),"rejected.png"), sep=''),
-			"get rejected" 						= paste('file://', file.path(getwd(),"rejected.png"), sep=''))
+		HS5$image<-image.story(HS5$message)
 			
 		story<-c(story,list(HS5))
 		if(HS5$message == "get hired" | HS5$message == "get rejected") {
@@ -147,14 +142,7 @@ if(is.null(HS3)){
 			"you get kicked out" 				= make.story("Your parents remember to change the locks this time, forcing you to move out and start your own", c("rock band", "burglary ring", "lawn care business")),
 			"they start to cramp your style" 	= make.story("This forces you to move out and start your own", c("rock band", "burglary ring", "lawn care business")))
 		
-		HS6$image<-switch(HS6$message,
-			# "join the army" 					= paste('file://', file.path(getwd(),"army.png"), sep='')
-			# "rock band" 						= paste('file://', file.path(getwd(),"rockband.png"), sep=''),
-			# "burglary ring" 					= paste('file://', file.path(getwd(),"burglary.png"), sep=''),
-			# "lawn care business"			 	= paste('file://', file.path(getwd(),"lawncare.png"), sep=''),
-			"they croak" 						= paste('file://', file.path(getwd(),"croak.png"), sep=''),
-			"you get kicked out" 				= paste('file://', file.path(getwd(),"kickedout.png"), sep=''),
-			"they start to cramp your style" 	= paste('file://', file.path(getwd(),"crampstyle.png"), sep=''))
+		HS6$image<-image.story(HS6$message)
 		
 		story<-c(story,list(HS6))
 	}
@@ -165,10 +153,6 @@ if(is.null(HS3)){
 				"burglary ring" 				= return(end.story(story,"On your first robbery attempt you try to mug an old lady who is also a Muay Thai kickboxer. She proceeds to kick you in the gut, shattering your spleen following which you pass out from the pain and are arrested. After a brief stay in the hospital, you spend the next 2 years in jail. Upon your release you have to disclose your felon status to future employers and are faced by crippling hospital bills. In desperation you go to work for Mcdonalds, inside of a Walmart!",image="mcdonalds.png")),
 				"lawn care business" 			= return(end.story(story,"Unbeknownst to you, you hire illegal immigrants, for which you are arrested and spend 2 years in jail. Upon your release you have to disclose your felon status to future employers, and the only job you can get is working for mcdonalds, inside of a Walmart!",image="mcdonalds4.png")))
 			
-			# HS7$image<-switch(HS7$message,
-				# "rock band" 						= paste('file://', file.path(getwd(),"rockband.png"), sep=''),
-				# "burglary ring" 					= paste('file://', file.path(getwd(),"burglary.png"), sep=''),
-				# "lawn care business"			 	= paste('file://', file.path(getwd(),"lawncare.png"), sep=''))
 				
 			story<-c(story,list(HS7))
 	} else {
