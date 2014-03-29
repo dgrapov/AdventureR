@@ -32,7 +32,9 @@ image.story<-function(input){
 			"business"									= "buisness.png",	
 			"liberal arts" 								= "liberalarts.png",
 			"get hired" 								= "rejected.png",
-			"get rejected" 								= "rejected.png")			
+			"get rejected" 								= "rejected.png",
+			"become broke" 								= "broke.png",
+			"get lonely" 								= "lonely.png")			
 }
 
 # write story 
@@ -47,7 +49,7 @@ end.story<-function(story,end="The end.",image=NULL){
 		knit.story<-paste(paste(unlist(lapply(1:length(story),function(i){
 
 				paste0(story[[i]]$question," ",story[[i]]$message,".","<br />","![image](",story[[i]]$image,")","<br />")
-		})), collapse=" "),end,"<br />","![image](",paste('file://', file.path(getwd(),image), sep=''),")")
+		})), collapse=" "),end,"<br />","![image](",image,")")
 	}
 	
 		#create .Rmd
