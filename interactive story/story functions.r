@@ -14,7 +14,7 @@ make.story<-function(question,options,image=NULL,image.filepath=FALSE){
 
 #choose image
 image.story<-function(input){
-	switch(input,
+	return(switch(input,
 			"travel" 									= "travel.png",
 			"go to college" 							= "college.png",
 			"stay at home and sponge off your parents" 	= "stayhome.png",
@@ -34,7 +34,8 @@ image.story<-function(input){
 			"get hired" 								= "rejected.png",
 			"get rejected" 								= "rejected.png",
 			"become broke" 								= "broke.png",
-			"get lonely" 								= "lonely.png")			
+			"get lonely" 								= "lonely.png")	)	
+					
 }
 
 # write story 
