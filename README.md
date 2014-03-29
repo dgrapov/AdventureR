@@ -1,9 +1,9 @@
 AdventureR
 ==========
 
-Choose your own life adventure.
+#### Choose your own life adventure.
 
-### Interactive story generation. Download zip, open folder "interactive story", and then run code in "START.r".
+Interactive story generation. Download zip, open folder "interactive story", and then run code in "START.r".
 This will allow you to generate a choose your own adventure story inspired by:
 ![image](http://boomeria.org/chemlectures/qual/macdonalds.jpg)
 
