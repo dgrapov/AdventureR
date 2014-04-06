@@ -3,8 +3,9 @@ AdventureR
 
 #### Choose your own life adventure.
 
-Interactive story generation. Download zip, open folder "interactive story", and then run code in "START.r".
-This will allow you to generate a choose your own adventure story inspired by:
+Interactive choose your own adventure and story generation in R and html/MD.
+
+Adventure inspired by:
 ![image](http://boomeria.org/chemlectures/qual/macdonalds.jpg)
 See original http://boomeria.org/chemlectures/qual/macdonalds.jpg.
 
@@ -17,3 +18,12 @@ See original http://boomeria.org/chemlectures/qual/macdonalds.jpg.
 * [Start a Business](https://github.com/dgrapov/AdventureR/blob/master/interactive%20story/story%20stay%20home%202.md)
 
 There are more posssibilites for stories, but the examples above show all of the different endings (for now).
+
+#### Installation
+
+Required R packages:
+
+* knitr 
+* markdown
+
+Download zip, open folder "interactive story", and then run code in "START.r".
