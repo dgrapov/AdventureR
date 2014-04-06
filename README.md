@@ -6,8 +6,9 @@ AdventureR
 Interactive story generation. Download zip, open folder "interactive story", and then run code in "START.r".
 This will allow you to generate a choose your own adventure story inspired by:
 ![image](http://boomeria.org/chemlectures/qual/macdonalds.jpg)
+See original http://boomeria.org/chemlectures/qual/macdonalds.jpg.
 
-See some story examples below:
+#### See some story examples below:
 
 * [Go to College](https://github.com/dgrapov/AdventureR/blob/master/interactive%20story/story%20college.md)
 * [Join Army](https://github.com/dgrapov/AdventureR/blob/master/interactive%20story/story%20army.md)
